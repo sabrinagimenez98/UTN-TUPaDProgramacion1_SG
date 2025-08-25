@@ -18,7 +18,7 @@ elif diaM=="JUEVES":
 elif diaM=="VIERNES":
     print("Inglés para viajeros")
 else:
-    print("El dia ingresado no corresponde")
+    print("El dia ingresado no corresponde a un dia de cursado")
 #Evaluamos DD y MM
 if mes == 4 or mes == 6 or mes == 9 or mes == 11:
     if dd < 30 or dd > 1:
@@ -37,3 +37,11 @@ elif mes == 1 or mes == 3 or mes == 5 or mes == 7 or mes == 8 or mes == 10 or me
         print("No es correcto el dia ingresado")
 else:
     print("El mes ingresado no es correcto")
+if diaM=="LUNES" or diaM=="MARTES" or diaM=="MIERCOLES":
+    alum_aprobados=int(input("Ingrese la cantidad de alumnos que aprobaron ese dia: "))
+    alum_no_aprobados=int(input("Ingrese la cantidad de NO alumnos que aprobaron ese dia: "))
+    total=alum_aprobados+alum_no_aprobados
+    porcentaje_aprobados=(alum_aprobados*100)/total
+    print(f"El porcentaje de alumnos aprobados es {porcentaje_aprobados}")
+else:
+    print("Ese dia no se tomaron examenes")
