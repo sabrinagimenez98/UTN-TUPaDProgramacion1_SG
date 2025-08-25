@@ -42,7 +42,7 @@ if diaM=="LUNES" or diaM=="MARTES" or diaM=="MIERCOLES":
     alum_aprobados=int(input("Ingrese la cantidad de alumnos que aprobaron ese dia: "))
     alum_no_aprobados=int(input("Ingrese la cantidad de NO alumnos que aprobaron ese dia: "))
     total=alum_aprobados+alum_no_aprobados
-    porcentaje_aprobados=(alum_aprobados*100)/total
+    porcentaje_aprobados=int((alum_aprobados*100)/total)
     print(f"El porcentaje de alumnos aprobados es {porcentaje_aprobados}")
 else:
     print("Ese dia no se tomaron examenes")
