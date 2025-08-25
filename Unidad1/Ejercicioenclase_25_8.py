@@ -1,11 +1,12 @@
 #Ejercicio en clase Lunes 25/8
-fecha=input("Ingresar una fecha en formato dia/DD/MM: ")
-partes=fecha.split("/")
-print(partes)
-dia=str(partes[0])
-dd=int(partes[1])
-mes=int(partes[2])
+fecha=input("Ingrese el dia de la semana y la fechaben formato DD/MM: ")
+print(fecha)
+fecha=fecha.split(" ")
+auxiliar=fecha[1].strip().split("/")
+dia=str(fecha[0])
 diaM=dia.upper()
+dd=int(auxiliar[0])
+mes=int(auxiliar[1])
 #Evaluamos el dia
 if diaM=="LUNES":
     print("Nivel incial")
