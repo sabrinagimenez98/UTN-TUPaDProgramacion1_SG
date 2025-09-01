@@ -13,7 +13,8 @@ for i in range (integrantes):
     for letra in palabra:
         clave=chr(ord(letra) + corrimiento)
         letra_alterna.append(clave)
-        resultado="".join(letra_alterna)
-        lista.append(" "+ resultado)
+
+    resultado="".join(letra_alterna)
+lista.append(" "+ resultado)
 
 print(lista)
