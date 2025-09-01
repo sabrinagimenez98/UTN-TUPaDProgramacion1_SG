@@ -102,7 +102,7 @@ print("Resultado:", frase)
 #3. Si quiere su nombre con la primera letra mayúscula. Por ejemplo: Pedro.
 
 
-input("Ingrese su nombre y una opcion 1,2 o 3: ")
+nombre_opciones=input("Ingrese su nombre y una opcion 1,2 o 3: ")
 print(nombre_opciones)
 nombre_opciones=nombre_opciones.split(" ")
 nombre_ingresado=nombre_opciones[0]
@@ -123,7 +123,7 @@ else:
 #magnitud en una de las siguientes categorías según la escala de Richter e imprima el resultado
 #por pantalla
 
-magnitad=int(input("Ingrese la magnitud del terrermoto: "))
+magnitud=int(input("Ingrese la magnitud del terrermoto: "))
 print("Calificacion segun la Escala de Richter:")
 if magnitud==3:
     print("Muy Leve")
