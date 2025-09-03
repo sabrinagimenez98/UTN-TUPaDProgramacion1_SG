@@ -5,19 +5,19 @@
 corrimiento=2
 letra_alterna=[]
 lista=[]
-integrantes=int(input("Cuantos integrantes son?: "))
-
+#integrantes=int(input("Cuantos integrantes son?: "))
+integrantes=0
 for i in range (integrantes):
     i=i+1
     palabra=str(input("Palabra: "))
     for letra in palabra:
         clave=chr(ord(letra) + corrimiento)
         letra_alterna.append(clave)
-    letra_alterna.append("/")
+    letra_alterna.append(" / ")
 
 resultado="".join(letra_alterna)
 
-print(resultado)
+print(f"Las nuevas claves son: {resultado}")
 
 #Ejercicio WHILE
 
@@ -25,9 +25,18 @@ import random
 opciones = ["piedra","papel","tijera"]
 compu= random.choice(opciones)
 
-jugador=input("Que vas a sacar (piedra,papel o tijera)?: ")
+contador=0
+jugadas=0
 
-print(f"Jugador: {jugador} vs Computadora:{compu}")
+while contador==0:
+    jugador=input("Que vas a sacar (piedra,papel o tijera)?: ")
+    if jugador==("piedra" or "papel" or "tijera"):
+        print("Eligio correctamente")
+        print(f"Jugador: {jugador} vs Computadora:{compu}")
+    else:
+        print("El jugador introdujo una opcion incorrecta")
+        contador=3
+    
 
 if jugador==compu:
     print("Empate")
