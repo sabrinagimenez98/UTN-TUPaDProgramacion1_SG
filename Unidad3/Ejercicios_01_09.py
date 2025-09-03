@@ -33,6 +33,7 @@ while contador==0:
     if jugador==("piedra" or "papel" or "tijera"):
         print("Eligio correctamente")
         print(f"Jugador: {jugador} vs Computadora:{compu}")
+        
     else:
         print("El jugador introdujo una opcion incorrecta")
         contador=3
