@@ -1,11 +1,33 @@
 #1) Crea un programa que imprima en pantalla todos los números enteros desde 0 hasta 100 
 #(incluyendo ambos extremos), en orden creciente, mostrando un número por línea.
 
+#for i in range(0,101):
+#    print(i)
+
 #2) Desarrolla un programa que solicite al usuario un número entero y determine la cantidad de 
 #dígitos que contiene.
+# Solicitar número al usuario
+
+#numero_digitos = int(input("Ingresá un número entero: "))
+# Convertir a positivo si es negativo
+#if numero_digitos < 0:
+#    numero_digitos = -numero_digitos
+# Contar dígitos usando repetición
+#digitos = 0
+#while numero_digitos > 0:
+#    numero_digitos = numero_digitos // 10
+#    digitos += 1
+#print(digitos)
 
 #3) Escribe un programa que sume todos los números enteros comprendidos entre dos valores 
 #dados por el usuario, excluyendo esos dos valores.
+
+#valor_inicial=int(input("Ingrese el Valor inicial: "))
+#valor_final=int(input("Ingrese el Valor final: "))
+#suma=0
+#for i in range(valor_inicial+1,valor_final):
+#    suma += i
+#print(suma)
 
 #4) Elabora un programa que permita al usuario ingresar números enteros y los sume en 
 #secuencia. El programa debe detenerse y mostrar el total acumulado cuando el usuario ingrese 
