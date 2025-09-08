@@ -1,16 +1,43 @@
 import random
+
+# Crear 25 números únicos para el cartón
 numeros = random.sample(range(1, 51), 25)
-filas=5
-columnas=5
-carton= [[random.choice(numeros) for _ in range(columnas)] 
- for _ in range(filas)]
 
-for i in range(5):
-    print(carton[i])
+# Crear matriz 5x5 sin repeticiones
+filas = 5
+columnas = 5
+carton = []
+indice = 0
+for i in range(filas):
+    fila = []
+    for j in range(columnas):
+        fila.append(numeros[indice])
+        indice += 1
+    carton.append(fila)
 
-matriz_0=[[[0 for _ in range(columnas)] 
-           
- for _ in range(filas)]]
-while carton==matriz_0:
-    num_aleatorio=random(1,51)
-    
+# Mostrar el cartón inicial
+print("🎱 Cartón de Bingo:")
+for fila in carton:
+    print(fila)
+
+# Números a sortear
+num_aleatorio = random.sample(range(1, 51), 50)
+print("\n Números sorteados:", num_aleatorio)
+
+# Juego: marcar números en el cartón
+contador = 25
+for evaluador in num_aleatorio:
+    print(f"\n Número sorteado: {evaluador}")
+    for i in range(filas):
+        for j in range(columnas):
+            if carton[i][j] == evaluador:
+                carton[i][j] = 0
+                contador -= 1
+                print(" ")
+                print("¡Número marcado!")
+                for fila in carton:
+                    print(fila)
+
+    if contador == 0:
+        print("\n ¡Cartón completo!")
+        break
