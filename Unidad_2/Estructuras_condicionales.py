@@ -125,7 +125,7 @@ else:
 
 magnitud=int(input("Ingrese la magnitud del terrermoto: "))
 print("Calificacion segun la Escala de Richter:")
-if magnitud==3:
+if magnitud<3:
     print("Muy Leve")
 elif 3<=magnitud<4:
     print("Leve")
