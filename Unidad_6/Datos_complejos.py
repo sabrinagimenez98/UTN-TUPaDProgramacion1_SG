@@ -30,7 +30,7 @@ precios_frutas["Sin precio"] = ["Mandarina","Sandia","Frutilla"]
 #• Luego, pedí un nombre y mostrale el número asociado, si existe.
 
 contactos={}
-cantidad_contactos=3
+cantidad_contactos=0
 for i in range(cantidad_contactos):
     contacto=input(f"Nombre del contacto {i+1}: ").title()
     numero=input(f"Numero {contacto}: ")
@@ -39,19 +39,44 @@ print(contactos)
 
 # Buscar un número por nombre
 
-consulta = input("\nIngresá el nombre del contacto que querés buscar: ").title()
-if consulta in contactos:
-    print(f"El número de {consulta} es: {contactos[consulta]}")
-else:
-    print(f"No se encontró el contacto {consulta}")
+#consulta = input("\nIngresá el nombre del contacto que querés buscar: ").title()
+#if consulta in contactos:
+#    print(f"El número de {consulta} es: {contactos[consulta]}")
+#else:
+#    print(f"No se encontró el contacto {consulta}")
 
 
 #5) Solicita al usuario una frase e imprime:
 #• Las palabras únicas (usando un set).
 #• Un diccionario con la cantidad de veces que aparece cada palabra.
 
+#frase=input("Escribe una frase con repeticiones: ").title()
+frase="hola mundo hola"
+
+palabras=frase.split() #Separo las palabras en una lista
+
+palabras_unicas = set(palabras)
+
+recuento = {}
+for palabra in palabras:
+    if palabra in recuento:
+        recuento[palabra] += 1
+    else:
+        recuento[palabra] = 1
+
+print(f"Palabras únicas: {palabras_unicas}")
+print(f"Frecuencia de palabras: {recuento}")
+
 #6) Permití ingresar los nombres de 3 alumnos, y para cada uno una tupla de 3 notas.
 #Luego, mostrá el promedio de cada alumno.
+cantidad_alumnos=3
+notas_por_alumno=3
+for i in range(cantidad_alumnos):
+    alumno=input(f"Nombre del contacto {i+1}: ").title()
+    for i in range(notas_por_alumno):
+        nota=input(f"Nota {i+1}: ")
+        
+    contactos[contacto]=numero
 
 #7) Dado dos sets de números, representando dos listas de estudiantes que aprobaron P1 y P2:
 #• Mostrá los que aprobaron ambos parciales.
