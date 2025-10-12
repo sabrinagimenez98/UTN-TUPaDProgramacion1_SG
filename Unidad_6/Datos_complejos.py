@@ -23,9 +23,11 @@ print(precios_frutas)
 
 #Supongo que la lista debe estar en el diccionario ya creado
 
-precios_frutas["Sin precio"] = ["Mandarina","Sandia","Frutilla"]
-print(precios_frutas)
+# Las frutas son las keys del diccionario, por lo que podemos obtenerlas con el método .keys()
+frutas = precios_frutas.keys()
 
+# Imprimimos el resultado
+print(frutas)
 
 #4) Escribí un programa que permita almacenar y consultar números telefónicos.
 #• Permití al usuario cargar 5 contactos con su nombre como clave y número como valor.
@@ -107,11 +109,9 @@ solo_uno = parcial1 ^ parcial2
 # Estudiantes que aprobaron al menos un parcial (sin repetir)
 al_menos_uno = parcial1 | parcial2
 
-print("✅ Aprobados en ambos parciales:", ambos)
-print("🟡 Aprobados en solo uno de los dos:", solo_uno)
-print("📋 Aprobados en al menos uno:", al_menos_uno)
-
-#Use la IA pero me sirvio para entender como usar intersección,diferencia y unión
+print("Aprobados en ambos parciales:", ambos)
+print("Aprobados en solo uno de los dos:", solo_uno)
+print("Aprobados en al menos uno:", al_menos_uno)
 
 #8) Armá un diccionario donde las claves sean nombres de productos y los valores su stock.
 #Permití al usuario:
