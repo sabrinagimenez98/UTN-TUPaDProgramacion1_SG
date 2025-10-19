@@ -1,65 +1,140 @@
-opc=0
-def mostrar_prod(producto,precio):
-    producto=input("Ingrese nombre del producto: ").lower()
-    precio=float(input("Ingrese el precio: "))
+import csv
+import os
 
-    import csv
-    while precio<0:
-        precio=float(input("Ingrese un valor positivo: "))
-        continue
+def inicializar_archivo():
+    if not os.path.exists('productos.csv'):
+        with open('productos.csv', 'w', encoding='UTF-8', newline='') as archivo:
+            encabezado = ['nombre', 'precio']
+            escritor = csv.DictWriter(archivo, fieldnames=encabezado)
+            escritor.writeheader()
 
-    with open("productos.csv", "w", newline="") as archivo:
-        escritor = csv.writer(archivo)
-        escritor.writerow(["producto", "precio"])  # encabezado
-        escritor.writerow([producto, precio])
+def cargar_productos():
+    try:
+        productos = []
+        with open('productos.csv', 'r') as archivo:
+            lector = csv.DictReader(archivo)
+            for fila in lector:
+                try:
+                    fila['precio'] = float(fila['precio'])
+                    productos.append(fila)
+                except ValueError:
+                    pass
+        return productos
+    except FileNotFoundError:
+        print('Archivo no encontrado')
 
-    print("Archivo CSV creado correctamente.")
+def mostrar_productos():
+    productos_mostrar = cargar_productos()
+    total = 0
+    if not productos_mostrar:
+        print('No hay productos para mostrar.')
+    else:
+        for prod in productos_mostrar:
+            print(f'{prod['nombre']} - ${prod['precio']}')
+            total += prod['precio']
+        print(f'El total acumulado de precios es ${total}')
 
-def agregar_prod(producto,precio):
+def agregar_producto():
+    try:
+        while True:
+            try:
+                nombre = input('Ingrese el nombre del producto a agregar: ').strip().capitalize()
+                if nombre == '':
+                    print('El nombre no puede estar vacio. Y tiene que ser una cadena.')
+                    raise ValueError
+                precio = float(input('Ingrese el precio del producto (ingrese . para el decimal): '))
+                #writerows -> espera una lista de diccionarios
+                #wirterow -> espera 1 solo diccionario
+                print('Producto agregado correctamente.')
+                with open('productos.csv', 'a', encoding='UTF-8', newline="") as archivo:
+                    escritor = csv.DictWriter(archivo, fieldnames=['nombre','precio'])
+                    escritor.writerow({'nombre':nombre, 'precio':precio})
+                    break
+            except ValueError:
+                print('El valor del precio debe ser un numero y el nombre no puede estar vacio.')
+    except FileNotFoundError:
+        print('Archivo no encontrado.')
 
-    producto=input("Ingrese nombre del nuevo producto: ").lower()
-    precio=float(input("Ingrese el precio del nuevo producto: "))
+def eliminar_producto():
 
-    import csv
-    with open("productos.csv", "a", newline="") as archivo:
-        escritor = csv.writer(archivo)
-        escritor.writerow(["producto", "precio"])  # encabezado
-        escritor.writerow([producto, precio])
+    productos_nuevos = []
+    productos = cargar_productos()
+    a_eliminar = input('Ingrese el nombre del producto a eliminar: ').strip().capitalize()
 
-    print("Nuevo producto agregado correctamente.")
+    for prod in productos:
+        if a_eliminar != prod['nombre'].capitalize():
+            productos_nuevos.append(prod)
+        else:
+            print('Producto eliminado')
 
-def eliminar_prod(producto,precio):
-    import csv
-    with open("productos.csv", "a", newline="") as archivo:
-        escritor = csv.writer(archivo)
-        escritor.writerow(["producto", "precio"])  # encabezado
-        escritor.writerow([producto, precio])
+    try:
+        with open('productos.csv', 'w', encoding='UTF-8', newline='') as archivo:
+            escritor = csv.DictWriter(archivo, fieldnames=['nombre', 'precio'])
+            escritor.writeheader()
+            escritor.writerows(productos_nuevos)
+            #writerowS -> espera una lista de diccionarios
+            #wirterow -> espera 1 solo diccionario
+    except FileNotFoundError:
+        print('Archivo no encontrado.')
 
-    print("Nuevo eliminado correctamente.")
+def actualizar_precio():
+    productos_nuevos = []
+    productos = cargar_productos()
+    a_actualizar = input('Ingrese el producto a actualizar: ').strip().capitalize()
+    for prod in productos:
+        if a_actualizar == prod['nombre'].capitalize():
+            while True:
+                try:
+                    precio_nuevo = float(input('Ingrese el precio actualizado: '))
+                    productos_nuevos.append({'nombre': prod['nombre'], 'precio': precio_nuevo})
+                    break
+                except ValueError:
+                    print('El valor debe ser numerico.')
+        else:
+            productos_nuevos.append(prod)
 
-while opc!=4:
-    print("\n====== MENÚ DE PRODUCTOS ======")
-    print("1. Mostrar productos")
-    print("2. Agregar producto")
-    print("3. Eliminar producto")
-    print("4. Salir")
-    print("===============================")
+        try:
+            with open('productos.csv', 'w', encoding='UTF-8', newline='') as archivo:
+                escritor = csv.DictWriter(archivo, fieldnames=['nombre', 'precio'])
+                escritor.writeheader()
+                escritor.writerows(productos_nuevos)
+                #writerowS -> espera una lista de diccionarios
+                #wirterow -> espera 1 solo diccionario
+        except FileNotFoundError:
+            print('Archivo no encontrado.')
+    print('Actualizado')
 
-    opc=input("\nIngrese una opcion: ")
+def main():
+    inicializar_archivo()
+    #Menu principal
+    while True:
+        try:
+            print('==Menu principal==')
+            print('1.Mostrar productos')
+            print('2.Agregar un producto')
+            print('3.Eliminar un producto')
+            print('4.Actualizar precio')
+            print('5.Salir')
 
-    while not opc.isdigit():
-        opc=input("\nOpcion invalida. Ingrese un número de 1 al 4: ")
-        continue
-    opc=int(opc)
+            opcion = int(input('Ingrese un opción: '))
 
-    match opc:
-        case 1:
-            mostrar_prod()
-        case 2:
-            agregar_prod()
-        case 3:
-            eliminar_prod()
-        case 4:
-            print("Saliendo de programa. Gracias por utilizar el sistema")
-        case _:
-            print("Opcion invalida.Seleccione una opcion de 1 al 4.")
+            match opcion:
+                case 1:
+                    mostrar_productos()
+                case 2:
+                    agregar_producto()
+                case 3:
+                    eliminar_producto()
+                case 4:
+                    actualizar_precio()
+                case 5:
+                    print('Hasta luego!')
+                    break
+                case _:
+                    print('Opcion incorrecta.')
+
+        except ValueError:
+            print('ERROR. Tiene que ingresar un número entero.')
+
+if __name__ == "__main__":
+    main() # Ejecuta el programa principal
